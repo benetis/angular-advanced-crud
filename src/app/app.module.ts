@@ -4,17 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { PointsTableComponent } from './points-table/points-table.component';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {PointsServiceService} from './points-service.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PointsTableComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    NgxDatatableModule
   ],
-  providers: [],
+  providers: [PointsServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
