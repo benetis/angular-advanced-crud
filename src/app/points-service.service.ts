@@ -4,19 +4,21 @@ import {Point} from './points-table/points-table.component';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
-export class PointsServiceService {
+export class PointService {
 
-    private points: Point[] = [];
+    private points = new BehaviorSubject([])
+    private _points = []
 
     constructor() {
+        this.points.subscribe(_ => this._points = _)
     }
 
     public getPoints(): Observable<Point[]> {
-        return new BehaviorSubject(this.points);
+        return this.points;
     }
 
     public addPoints(pointsToAdd): Observable<Point[]> {
-        this.points = this.points.concat(pointsToAdd)
+        this.points.next([...this._points, ...pointsToAdd])
         return this.getPoints()
     }
 

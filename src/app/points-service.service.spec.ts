@@ -1,17 +1,17 @@
 import {inject, TestBed} from '@angular/core/testing';
 
-import {PointsServiceService} from './points-service.service';
+import {PointService} from './points-service.service';
 
-fdescribe('PointsServiceService', () => {
+fdescribe('PointService', () => {
     let service;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [PointsServiceService]
+            providers: [PointService]
         });
     });
 
-    beforeEach(inject([PointsServiceService], (srv: PointsServiceService) => {
+    beforeEach(inject([PointService], (srv: PointService) => {
         service = srv;
     }));
 
