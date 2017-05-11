@@ -1,6 +1,6 @@
 import {inject, TestBed} from '@angular/core/testing';
 
-import {PointService} from './points-service.service';
+import {PointService, PSResponse} from './points-service.service';
 
 describe('PointService', () => {
     let service;
@@ -28,7 +28,8 @@ describe('PointService', () => {
             {x: 0, y: 1},
         ]
 
-        service.addPoints(pointsToAdd).subscribe(p => {
+        service.addPoints(pointsToAdd)
+        service.getPoints().subscribe(p => {
             expect(p).toEqual(pointsToAdd);
             done();
         })
@@ -40,14 +41,42 @@ describe('PointService', () => {
             {x: 0, y: 1},
         ]
 
+        const pointsToAddB = [
+            {x: -1, y: -1},
+        ]
+
         service.addPoints(pointsToAdd)
-        service.addPoints(pointsToAdd)
+        service.addPoints(pointsToAddB)
 
         service.getPoints().subscribe(p => {
-            expect(p).toEqual([...pointsToAdd, ...pointsToAdd]);
+            expect(p).toEqual([...pointsToAdd, ...pointsToAddB]);
             done();
         })
     })
+
+    it('should return { message: "duplicate", error: true} when requested with duplicate point',
+        (done) => {
+            service.addPoints([{x: 0, y: 0}])
+            service.addPoints([{x: 0, y: 0}]).subscribe(p => {
+                expect(p).toEqual(<PSResponse>{message: 'duplicate', error: true})
+                done();
+            })
+        })
+
+    it('should return { message: "over limit", error: true} when requested with 10001th point',
+        (done) => {
+
+            let testArr = []
+            for (let i = 0; i < 10000; i++) {
+                testArr.push({x: i, y: i + 1})
+            }
+            service.addPoints(testArr)
+
+            service.addPoints([{x: -1, y: -1}]).subscribe(p => {
+                expect(p).toEqual(<PSResponse>{message: 'over limit', error: true})
+                done();
+            })
+        })
 
 
 });

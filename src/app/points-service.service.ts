@@ -2,6 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Point} from './points-table/points-table.component';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {of} from 'rxjs/observable/of';
+
+export interface PSResponse { message: string, error: boolean
+}
 
 @Injectable()
 export class PointService {
@@ -17,9 +21,20 @@ export class PointService {
         return this.points;
     }
 
-    public addPoints(pointsToAdd): Observable<Point[]> {
-        this.points.next([...this._points, ...pointsToAdd])
-        return this.getPoints()
+    public addPoints(pointsToAdd: Point[]): Observable<PSResponse> {
+        const overLimit: boolean = (this._points.length + pointsToAdd.length) > 10000
+        if (overLimit) {
+            return of({error: true, message: 'over limit'})
+        } else if (this.hasDuplicates(this._points, pointsToAdd)) {
+            return of({error: true, message: 'duplicate'})
+        } else {
+            this.points.next([...this._points, ...pointsToAdd])
+            return of({error: false, message: ''})
+        }
+    }
+
+    private hasDuplicates(points: Point[], compareTo: Point[]): boolean {
+        return [new Set([...points, ...compareTo])].length === [...points, ...compareTo].length
     }
 
 }
