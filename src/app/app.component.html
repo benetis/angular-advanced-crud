@@ -1,5 +1,6 @@
 <app-points-table></app-points-table>
 <app-add-point></app-add-point>
 <app-import-gatekeeper
+        [importResponses]="importResponses$ | async"
         (fileContents)="fileUploaded($event)"
 ></app-import-gatekeeper>

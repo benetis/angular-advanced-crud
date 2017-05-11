@@ -2,7 +2,7 @@ import {inject, TestBed} from '@angular/core/testing';
 
 import {PointService, PSResponse} from './points-service.service';
 
-describe('PointService', () => {
+fdescribe('PointService', () => {
     let service;
 
     beforeEach(() => {
@@ -54,16 +54,40 @@ describe('PointService', () => {
         })
     })
 
-    it('should return { message: "duplicate", error: true} when requested with duplicate point',
+    it('should only add one if trying to add twice the same', done => {
+        const pointsToAdd = [
+            {x: 1, y: 1},
+        ]
+
+        service.addPoints(pointsToAdd)
+        service.addPoints(pointsToAdd)
+
+        service.getPoints().subscribe(p => {
+            expect(p).toEqual(pointsToAdd);
+            done();
+        })
+    })
+
+    it('should return [{ message: "duplicate", error: true}] when requested with duplicate point',
         (done) => {
             service.addPoints([{x: 0, y: 0}])
             service.addPoints([{x: 0, y: 0}]).subscribe(p => {
-                expect(p).toEqual(<PSResponse>{message: 'duplicate', error: true})
+                expect(p).toEqual(<PSResponse[]>[{message: 'duplicate', error: true}])
                 done();
             })
         })
 
-    it('should return { message: "over limit", error: true} when requested with 10001th point',
+    it('should not add additional point when requested with duplicate point',
+        (done) => {
+            service.addPoints([{x: 0, y: 0}])
+            service.addPoints([{x: 0, y: 0}])
+            service.getPoints().subscribe(p => {
+                expect(p).toEqual([{x: 0, y: 0}])
+                done();
+            })
+        })
+
+    it('should return [{ message: "over limit", error: true}] when requested with 10001th point',
         (done) => {
 
             let testArr = []
@@ -73,10 +97,9 @@ describe('PointService', () => {
             service.addPoints(testArr)
 
             service.addPoints([{x: -1, y: -1}]).subscribe(p => {
-                expect(p).toEqual(<PSResponse>{message: 'over limit', error: true})
+                expect(p).toEqual(<PSResponse[]>[{message: 'over limit', error: true}])
                 done();
             })
         })
-
 
 });

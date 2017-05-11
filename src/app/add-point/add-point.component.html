@@ -18,7 +18,7 @@
                [min]="-5000"
                [max]="5000">
     </label>
-    <button (click)="addPoint(x, y)">Add</button>
+    <button (click)="addPoint($event)">Add</button>
 </form>
 <p *ngIf="!addPointForm.form.valid && addPointForm.form.dirty">
     X and Y need to be between -5000 and 5000

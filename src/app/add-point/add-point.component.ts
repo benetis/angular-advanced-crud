@@ -8,8 +8,8 @@ import {PointService} from '../points-service.service';
 })
 export class AddPointComponent implements OnInit {
 
-    public x: number;
-    public y: number;
+    public x: number = 0
+    public y: number = 0
 
     constructor(private pointsService: PointService) {
     }
@@ -17,8 +17,10 @@ export class AddPointComponent implements OnInit {
     ngOnInit() {
     }
 
-    public addPoint(x: number, y: number) {
-        this.pointsService.addPoints([{x, y}])
+    public addPoint() {
+        this.pointsService.addPoints(
+            [{x: this.x, y: this.y,}]
+        )
     }
 
 }

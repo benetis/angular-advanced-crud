@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PSResponse} from '../points-service.service';
 
 @Component({
     selector: 'app-import-gatekeeper',
@@ -8,7 +9,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class ImportGatekeeperComponent implements OnInit {
 
     @Input()
-    public errMsg: string = ''
+    public importResponses: PSResponse[] = []
 
     @Output()
     public fileContents: EventEmitter<any[]> = new EventEmitter();
