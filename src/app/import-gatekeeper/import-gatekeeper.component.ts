@@ -28,7 +28,16 @@ export class ImportGatekeeperComponent implements OnInit {
         const myReader: FileReader = new FileReader();
 
         myReader.onloadend = e => {
-            this.fileContents.emit(myReader.result.split('\n'))
+            this.fileContents.emit(
+                myReader
+                    .result
+                    .split('\n')
+                    .filter(_ => _ !== '')
+                    .map(line => {
+                        const [x, y] = line.split(' ')
+                        return {x: +x, y: +y}
+                    })
+            )
         }
 
         myReader.readAsText(file);

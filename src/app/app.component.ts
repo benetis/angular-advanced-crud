@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ImportExportTransformService} from './import-export-transform.service';
+import {PointService} from './points-service.service';
 
 @Component({
     selector: 'app-root',
@@ -9,10 +9,11 @@ import {ImportExportTransformService} from './import-export-transform.service';
 export class AppComponent {
     title = 'app works!';
 
-    constructor(private importExportTransform: ImportExportTransformService) {
+    constructor(private pointService: PointService) {
     }
 
     public fileUploaded(contents: any[]) {
         console.log(contents)
+        this.pointService.addPoints(contents)
     }
 }
