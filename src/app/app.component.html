@@ -1,3 +1,5 @@
 <app-points-table></app-points-table>
 <app-add-point></app-add-point>
-<app-import-gatekeeper></app-import-gatekeeper>
+<app-import-gatekeeper
+        (fileContents)="fileUploaded($event)"
+></app-import-gatekeeper>
