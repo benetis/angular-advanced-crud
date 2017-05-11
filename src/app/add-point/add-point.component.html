@@ -1,0 +1,9 @@
+<form>
+    <label>X
+        <input type="text" ngModel #x name="x">
+    </label>
+    <label>Y
+        <input type="text" ngModel #y name="y">
+    </label>
+    <button (click)="addPoint(x.value, y.value)">Add</button>
+</form>

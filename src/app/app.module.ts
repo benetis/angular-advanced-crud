@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { PointsTableComponent } from './points-table/points-table.component';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
-import {PointsServiceService} from './points-service.service';
+import {PointService} from './points-service.service';
+import { AddPointComponent } from './add-point/add-point.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PointsTableComponent
+    PointsTableComponent,
+    AddPointComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +21,7 @@ import {PointsServiceService} from './points-service.service';
     HttpModule,
     NgxDatatableModule
   ],
-  providers: [PointsServiceService],
+  providers: [PointService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

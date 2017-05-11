@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
+import {PointService} from '../points-service.service';
 
 export interface Point {
     x: number;
@@ -14,13 +15,10 @@ export interface Point {
 })
 export class PointsTableComponent implements OnInit {
 
-    public points$: Observable<Point[]> = of([
-        {x: 1, y: 2},
-        {x: -12, y: 22},
-        {x: -2222, y: 4999},
-    ]);
+    public points$: Observable<Point[]>;
 
-    constructor() {
+    constructor(private pointsService: PointService) {
+        this.points$ = pointsService.getPoints()
     }
 
     ngOnInit() {
