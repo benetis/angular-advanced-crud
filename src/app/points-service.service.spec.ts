@@ -2,7 +2,7 @@ import {inject, TestBed} from '@angular/core/testing';
 
 import {PointService} from './points-service.service';
 
-fdescribe('PointService', () => {
+describe('PointService', () => {
     let service;
 
     beforeEach(() => {

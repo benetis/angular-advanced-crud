@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'app-import-gatekeeper',
@@ -6,6 +6,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
     styleUrls: ['./import-gatekeeper.component.scss']
 })
 export class ImportGatekeeperComponent implements OnInit {
+
+    @Input()
+    public errMsg: string = ''
 
     @Output()
     public fileContents: EventEmitter<any[]> = new EventEmitter();

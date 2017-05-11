@@ -10,6 +10,7 @@ import {PointService} from './points-service.service';
 import {AddPointComponent} from './add-point/add-point.component';
 import {CustomFormsModule} from 'ng2-validation';
 import {ImportGatekeeperComponent} from './import-gatekeeper/import-gatekeeper.component';
+import {ImportExportTransformService} from './import-export-transform.service';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,7 @@ import {ImportGatekeeperComponent} from './import-gatekeeper/import-gatekeeper.c
         NgxDatatableModule,
         CustomFormsModule
     ],
-    providers: [PointService],
+    providers: [PointService, ImportExportTransformService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
