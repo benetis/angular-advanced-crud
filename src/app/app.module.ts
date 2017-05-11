@@ -9,12 +9,14 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {PointService} from './points-service.service';
 import {AddPointComponent} from './add-point/add-point.component';
 import {CustomFormsModule} from 'ng2-validation';
+import {ImportGatekeeperComponent} from './import-gatekeeper/import-gatekeeper.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         PointsTableComponent,
-        AddPointComponent
+        AddPointComponent,
+        ImportGatekeeperComponent
     ],
     imports: [
         BrowserModule,
