@@ -1,9 +1,25 @@
-<form>
+<form #addPointForm="ngForm">
     <label>X
-        <input type="text" ngModel #x name="x">
+        <input type="text"
+               [(ngModel)]="x"
+               #field="ngModel"
+               name="x"
+               required
+               number
+               [min]="-5000"
+               [max]="5000">
     </label>
     <label>Y
-        <input type="text" ngModel #y name="y">
+        <input type="text"
+               [(ngModel)]="y"
+               name="y"
+               required
+               number
+               [min]="-5000"
+               [max]="5000">
     </label>
-    <button (click)="addPoint(x.value, y.value)">Add</button>
+    <button (click)="addPoint(x, y)">Add</button>
 </form>
+<p *ngIf="!addPointForm.form.valid && addPointForm.form.dirty">
+    X and Y need to be between -5000 and 5000
+</p>

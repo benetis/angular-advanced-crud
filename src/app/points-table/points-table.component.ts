@@ -11,7 +11,7 @@ export interface Point {
 @Component({
     selector: 'app-points-table',
     templateUrl: './points-table.component.html',
-    styleUrls: ['./points-table.component.sass']
+    styleUrls: ['./points-table.component.scss']
 })
 export class PointsTableComponent implements OnInit {
 

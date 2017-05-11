@@ -4,9 +4,12 @@ import {PointService} from '../points-service.service';
 @Component({
     selector: 'app-add-point',
     templateUrl: './add-point.component.html',
-    styleUrls: ['./add-point.component.sass']
+    styleUrls: ['./add-point.component.scss']
 })
 export class AddPointComponent implements OnInit {
+
+    public x: number;
+    public y: number;
 
     constructor(private pointsService: PointService) {
     }
