@@ -3,6 +3,9 @@
     {{response.message}}
     [{{response.point.x}}, {{response.point.y}}]
 </p>
+<p *ngFor="let formatError of formatErrors" class="error">
+    {{formatError}}
+</p>
 <input type="file"
        name="image"
        (change)="fileChange($event)"/>

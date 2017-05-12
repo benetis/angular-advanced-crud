@@ -14,6 +14,8 @@ export class ImportGatekeeperComponent implements OnInit {
     @Output()
     public fileContents: EventEmitter<any[]> = new EventEmitter();
 
+    public formatErrors: string[] = [];
+
     constructor() {
     }
 
@@ -28,12 +30,25 @@ export class ImportGatekeeperComponent implements OnInit {
         const file: File = inputValue.files[0];
         const myReader: FileReader = new FileReader();
 
-        myReader.onloadend = e => {
+        myReader
+            .onloadend = e => {
+            this.formatErrors = [];
             this.fileContents.emit(
                 myReader
                     .result
                     .split('\n')
                     .filter(_ => _ !== '')
+                    .filter(line => {
+                        // Bad input lines are skipped
+                        const [x, y, rest] = line.split(' ')
+
+                        if (rest) {
+                            this.formatErrors.push(`Line with {${x}, ${y}} is invalid`)
+                            return false
+                        } else {
+                            return true;
+                        }
+                    })
                     .map(line => {
                         const [x, y] = line.split(' ')
                         return {x: +x, y: +y}
