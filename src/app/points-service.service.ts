@@ -4,7 +4,10 @@ import {Point} from './points-table/points-table.component';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import * as _ from 'lodash';
 import {of} from 'rxjs/observable/of';
-export interface PSResponse { message: string, error: boolean
+export interface PSResponse {
+    message: string,
+    error: boolean,
+    point?: Point
 }
 
 @Injectable()
@@ -26,13 +29,15 @@ export class PointService {
     public addPoints(pointsToAdd: Point[]): Observable<PSResponse[]> {
         const limit = 10000
         const currentSize = this._points.length
-        const union = _.differenceWith(pointsToAdd, this._points, (a: Point, b: Point) => {
-            return _.isEqual({x: a.x, y: a.y}, {x: b.x, y: b.y})
-        })
+        const union = _.differenceWith(pointsToAdd, this._points, this.isEqual)
         const xor = _.isEqual(union, this._points) ? [] : union
 
-        const duplicates = _.intersectionWith(this._points, pointsToAdd, _.isEqual)
-            .map(p => ({error: true, message: 'duplicate'}))
+        const duplicates = _.intersectionWith(this._points, pointsToAdd, this.isEqual)
+            .map(p => ({
+                error: true,
+                message: 'duplicate',
+                point: p
+            }))
 
         const toAddSize = pointsToAdd.length
         const overLimit: boolean = (currentSize + toAddSize) > limit
@@ -51,6 +56,10 @@ export class PointService {
             ])
         }
 
+    }
+
+    private isEqual(p1: Point, p2: Point): boolean {
+        return _.isEqual({x: p1.x, y: p1.y}, {x: p2.x, y: p2.y})
     }
 
 }

@@ -1,7 +1,7 @@
-<p *ngFor="let res of importResponses"
-class="error"
->
-    {{res.message}}
+<p *ngFor="let response of importResponses"
+   class="error">
+    {{response.message}}
+    [{{response.point.x}}, {{response.point.y}}]
 </p>
 <input type="file"
        name="image"

@@ -23,3 +23,7 @@
 <p *ngIf="!addPointForm.form.valid && addPointForm.form.dirty">
     X and Y need to be between -5000 and 5000
 </p>
+<p *ngIf="response?.error">
+    {{response.message}}
+    [{{response.point.x}}, {{response.point.y}}]
+</p>
