@@ -1,11 +1,14 @@
-<p *ngFor="let response of importResponses"
-   class="error">
-    {{response.message}}
-    [{{response.point.x}}, {{response.point.y}}]
-</p>
-<p *ngFor="let formatError of formatErrors" class="error">
-    {{formatError}}
-</p>
-<input type="file"
-       name="image"
-       (change)="fileChange($event)"/>
+<div class="box">
+    <input type="file"
+           name="image"
+           (change)="fileChange($event)"/>
+    <div *ngFor="let response of importResponses"
+       class="error">
+        {{response.message}}
+        [{{response.point.x}}, {{response.point.y}}]
+    </div>
+    <div *ngFor="let formatError of formatErrors"
+       class="error">
+        {{formatError}}
+    </div>
+</div>

@@ -1,3 +1,14 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+.box {
+  padding: 25px 5px;
+  margin-top: 10px;
+  border: 1px solid #cbcbcb;
+}
+
+.error {
+  margin-top: 10px;
+  color: red;
+}

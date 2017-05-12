@@ -43,7 +43,7 @@ export class ImportGatekeeperComponent implements OnInit {
                         const [x, y, rest] = line.split(' ')
 
                         if (rest) {
-                            this.formatErrors.push(`Line with {${x}, ${y}} is invalid`)
+                            this.formatErrors.push(`Line with [${x}, ${y}] is invalid`)
                             return false
                         } else {
                             return true;
