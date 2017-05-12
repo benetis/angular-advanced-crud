@@ -1,7 +1,14 @@
 <h2>Points table</h2>
-<ngx-datatable
-  [rows]="points$ | async"
-  [columns]="[{name:'X'},{name:'Y'}]"
-  [limit]="10"
->
-</ngx-datatable>
+<div class="points-table">
+    <ngx-datatable
+            class="material"
+            [columnMode]="'standard'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="points$ | async"
+            [columns]="[{name:'X'},{name:'Y'}]"
+            [limit]="10"
+    >
+    </ngx-datatable>
+</div>
