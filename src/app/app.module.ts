@@ -11,6 +11,7 @@ import {AddPointComponent} from './add-point/add-point.component';
 import {CustomFormsModule} from 'ng2-validation';
 import {ImportGatekeeperComponent} from './import-gatekeeper/import-gatekeeper.component';
 import { FavoritePointsComponent } from './favorite-points/favorite-points.component';
+import { TablePaginationOptionsComponent } from './table-pagination-options/table-pagination-options.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { FavoritePointsComponent } from './favorite-points/favorite-points.compo
         PointsTableComponent,
         AddPointComponent,
         ImportGatekeeperComponent,
-        FavoritePointsComponent
+        FavoritePointsComponent,
+        TablePaginationOptionsComponent
     ],
     imports: [
         BrowserModule,

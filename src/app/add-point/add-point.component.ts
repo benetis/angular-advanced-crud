@@ -23,7 +23,7 @@ export class AddPointComponent implements OnInit {
     }
 
     public addPoint() {
-        this.addPoints.emit([{x: this.x, y: this.y}])
+        this.addPoints.emit([{x: +this.x, y: +this.y}])
     }
 
 }

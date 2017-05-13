@@ -1,6 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {PointService} from '../points-service.service';
+import {PaginationOptions} from '../table-pagination-options/table-pagination-options.component';
+import {of} from 'rxjs/observable/of';
 
 export interface Point {
     x: number;
@@ -15,11 +17,14 @@ export interface Point {
 export class PointsTableComponent implements OnInit {
 
     public points$: Observable<Point[]>;
-    private selected: Point[] = []
+
+    public paginateBy: PaginationOptions = 5;
 
     @Output() pointsSelected: EventEmitter<Point[]> = new EventEmitter();
+    private selected: Point[] = []
 
-    constructor(private pointsService: PointService) {
+    constructor(private pointsService: PointService,
+                private ref: ChangeDetectorRef) {
         this.points$ = pointsService.getPoints()
     }
 
@@ -35,5 +40,9 @@ export class PointsTableComponent implements OnInit {
         this.selected.splice(0, this.selected.length);
         this.selected.push(...selected);
         this.pointsSelected.emit(this.selected)
+    }
+
+    public paginationChanged(paginateBy) {
+        this.paginateBy = paginateBy
     }
 }

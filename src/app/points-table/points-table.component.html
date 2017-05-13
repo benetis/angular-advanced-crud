@@ -3,6 +3,7 @@
     <div class="action-menu">
         <button (click)="delete($event)">Delete</button>
     </div>
+    <app-table-pagination-options (paginate)="paginationChanged($event)"></app-table-pagination-options>
     <ngx-datatable
             [headerHeight]="50"
             [footerHeight]="50"
@@ -12,7 +13,7 @@
             [rows]="points$ | async"
             [columnMode]="'force'"
             (select)="onSelect($event)"
-            [limit]="5">
+            [limit]="paginateBy">
         <ngx-datatable-column
                 [width]="30"
                 [sortable]="false"
