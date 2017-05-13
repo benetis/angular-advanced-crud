@@ -1,16 +1,19 @@
 <div class="list-menu">
-  <div class="box-sm">
-    <p>Save selected points to list</p>
-    <input type="text" #listName/>
-    <button (click)="saveList($event)">Save list</button>
-  </div>
-  <div class="box-sm">
-    <p>Load list points to table</p>
-    <select class="form-control" id="power" required>
-      <!--<option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>-->
-      <option></option>
-    </select>
-    <button (click)="loadList($event)">Load list</button>
-    <button (click)="loadList($event)">Delete list</button>
-  </div>
+    <div class="box-sm">
+        <p>Save selected points to list</p>
+        <input type="text"
+               #listName/>
+        <button (click)="saveList(listName.value)">Save list</button>
+    </div>
+    <div class="box-sm">
+        <p>Load list points to table</p>
+        <select>
+            <option
+                    *ngFor="let pointsList of keys(savedListsOfPoints)"
+                    [value]="pointsList">{{pointsList}}
+            </option>
+        </select>
+        <button (click)="loadList($event)">Load list</button>
+        <button (click)="deleteList($event)">Delete list</button>
+    </div>
 </div>

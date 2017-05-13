@@ -10,14 +10,20 @@ export class FavoritePointsComponent implements OnInit {
 
     @Input() selected: Point[] = []
 
+    public savedListsOfPoints: { [key: string]: Point[] } = {}
+
     constructor() {
     }
 
     ngOnInit() {
     }
 
-    public saveList(e) {
-        console.log(this.selected)
+    public saveList(listName) {
+        this.savedListsOfPoints[listName] = this.selected
+    }
+
+    public keys(obj) {
+        return Object.keys(obj)
     }
 
 }
