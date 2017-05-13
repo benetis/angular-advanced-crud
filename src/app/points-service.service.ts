@@ -26,6 +26,12 @@ export class PointService {
         return this.points;
     }
 
+    public deletePoints(pointsToDelete: Point[]): Observable<boolean> {
+        this.points.next(_.xorWith(pointsToDelete, this._points, this.isEqual))
+
+        return of(true);
+    }
+
     public addPoints(pointsToAdd: Point[]): Observable<PSResponse[]> {
         const limit = 10000
         const currentSize = this._points.length

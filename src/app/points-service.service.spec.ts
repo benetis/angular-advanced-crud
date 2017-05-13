@@ -72,7 +72,8 @@ describe('PointService', () => {
         (done) => {
             service.addPoints([{x: 0, y: 0}])
             service.addPoints([{x: 0, y: 0}]).subscribe(p => {
-                expect(p).toEqual(<PSResponse[]>[{message: 'duplicate', error: true}])
+                expect(p)
+                    .toEqual(<PSResponse[]>[{message: 'duplicate', error: true, point: {x: 0, y: 0}}])
                 done();
             })
         })
@@ -101,5 +102,15 @@ describe('PointService', () => {
                 done();
             })
         })
+
+    describe('delete', () => {
+        it('should return empty list after delete is called on already empty list', (done) => {
+            service.deletePoints([{x: 0, y: 0}])
+            service.getPoints().subscribe(p => {
+                expect(p).toEqual([])
+                done();
+            })
+        })
+    })
 
 });

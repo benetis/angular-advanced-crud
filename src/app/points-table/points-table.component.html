@@ -1,7 +1,7 @@
 <h2>Points table</h2>
 <div class="points-table">
     <div class="action-menu">
-        <button>Actions</button>
+        <button (click)="delete($event)">Delete</button>
     </div>
     <ngx-datatable
             [headerHeight]="50"
@@ -11,6 +11,7 @@
             [selected]="[]"
             [rows]="points$ | async"
             [columnMode]="'force'"
+            (select)="onSelect($event)"
             [limit]="5">
     <ngx-datatable-column
             [width]="30"
