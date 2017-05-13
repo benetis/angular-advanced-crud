@@ -1,34 +1,29 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PointService, PSResponse} from '../points-service.service';
+import {Point} from '../points-table/points-table.component';
 
 @Component({
     selector: 'app-add-point',
     templateUrl: './add-point.component.html',
     styleUrls: ['./add-point.component.scss']
 })
-export class AddPointComponent implements OnInit, OnDestroy {
+export class AddPointComponent implements OnInit {
+
+    @Output() addPoints: EventEmitter<Point[]> = new EventEmitter()
 
     public x: number = 0
     public y: number = 0
 
-    public response: PSResponse = {error: false, message: ''}
+    @Input() public response: PSResponse = {error: false, message: ''}
 
-    private sub: any;
-
-    constructor(private pointsService: PointService) {
+    constructor() {
     }
 
     ngOnInit() {
     }
 
-    ngOnDestroy() {
-        this.sub.unsubscribe()
-    }
-
     public addPoint() {
-        this.sub = this.pointsService.addPoints(
-            [{x: this.x, y: this.y}]
-        ).subscribe(_ => this.response = _[0])
+        this.addPoints.emit([{x: this.x, y: this.y}])
     }
 
 }

@@ -32,6 +32,11 @@ export class PointService {
         return of(true);
     }
 
+    public setPoints(points: Point[]): Observable<boolean> {
+        this.points.next(points)
+        return of(true);
+    }
+
     public addPoints(pointsToAdd: Point[]): Observable<PSResponse[]> {
         const limit = 10000
         const currentSize = this._points.length

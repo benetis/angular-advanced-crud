@@ -102,4 +102,13 @@ describe('PointService', () => {
                 done();
             })
         })
+
+    it('should set list to specified points when setPoints is called', (done) => {
+        service.addPoints([{x: 0, y: 0}])
+        service.setPoints([{x: 1, y: 0}])
+        service.getPoints().subscribe(p => {
+            expect(p).toEqual([{x: 1, y: 0}])
+            done();
+        })
+    })
 });

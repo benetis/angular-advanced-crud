@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Point} from '../points-table/points-table.component';
+import {PSResponse} from '../points-service.service';
 
 @Component({
     selector: 'app-favorite-points',
@@ -9,6 +10,8 @@ import {Point} from '../points-table/points-table.component';
 export class FavoritePointsComponent implements OnInit {
 
     @Input() selected: Point[] = []
+    @Input() public response: PSResponse = {error: false, message: ''}
+    @Output() setPoints: EventEmitter<Point[]> = new EventEmitter()
 
     public selectedListName: string = ''
 
@@ -21,13 +24,17 @@ export class FavoritePointsComponent implements OnInit {
     }
 
     public saveList(listName) {
-        this.savedListsOfPoints[listName] = this.selected
+        this.savedListsOfPoints[listName] = [...this.selected]
     }
 
     public deleteList() {
         if (this.selectedListName !== '') {
             delete this.savedListsOfPoints[this.selectedListName]
         }
+    }
+
+    public loadList() {
+        this.setPoints.emit(this.savedListsOfPoints[this.selectedListName])
     }
 
     public keys(obj) {
