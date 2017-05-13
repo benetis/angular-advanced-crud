@@ -10,6 +10,8 @@ export class FavoritePointsComponent implements OnInit {
 
     @Input() selected: Point[] = []
 
+    public selectedListName: string = ''
+
     public savedListsOfPoints: { [key: string]: Point[] } = {}
 
     constructor() {
@@ -20,6 +22,12 @@ export class FavoritePointsComponent implements OnInit {
 
     public saveList(listName) {
         this.savedListsOfPoints[listName] = this.selected
+    }
+
+    public deleteList() {
+        if (this.selectedListName !== '') {
+            delete this.savedListsOfPoints[this.selectedListName]
+        }
     }
 
     public keys(obj) {

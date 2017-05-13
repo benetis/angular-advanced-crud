@@ -7,7 +7,7 @@
     </div>
     <div class="box-sm">
         <p>Load list points to table</p>
-        <select>
+        <select [(ngModel)]="selectedListName">
             <option
                     *ngFor="let pointsList of keys(savedListsOfPoints)"
                     [value]="pointsList">{{pointsList}}
