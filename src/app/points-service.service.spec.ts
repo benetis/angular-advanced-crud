@@ -102,15 +102,4 @@ describe('PointService', () => {
                 done();
             })
         })
-
-    describe('delete', () => {
-        it('should return empty list after delete is called on already empty list', (done) => {
-            service.deletePoints([{x: 0, y: 0}])
-            service.getPoints().subscribe(p => {
-                expect(p).toEqual([])
-                done();
-            })
-        })
-    })
-
 });

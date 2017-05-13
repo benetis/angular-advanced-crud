@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {PointService} from '../points-service.service';
 
@@ -17,6 +17,8 @@ export class PointsTableComponent implements OnInit {
     public points$: Observable<Point[]>;
     private selected: Point[] = []
 
+    @Output() pointsSelected: EventEmitter<Point[]> = new EventEmitter();
+
     constructor(private pointsService: PointService) {
         this.points$ = pointsService.getPoints()
     }
@@ -32,6 +34,6 @@ export class PointsTableComponent implements OnInit {
     public onSelect({selected}) {
         this.selected.splice(0, this.selected.length);
         this.selected.push(...selected);
+        this.pointsSelected.emit(this.selected)
     }
-
 }

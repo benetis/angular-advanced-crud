@@ -10,13 +10,15 @@ import {PointService} from './points-service.service';
 import {AddPointComponent} from './add-point/add-point.component';
 import {CustomFormsModule} from 'ng2-validation';
 import {ImportGatekeeperComponent} from './import-gatekeeper/import-gatekeeper.component';
+import { FavoritePointsComponent } from './favorite-points/favorite-points.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         PointsTableComponent,
         AddPointComponent,
-        ImportGatekeeperComponent
+        ImportGatekeeperComponent,
+        FavoritePointsComponent
     ],
     imports: [
         BrowserModule,

@@ -6,6 +6,12 @@ $corner: #cbcbcb;
   border: 1px solid $corner;
 }
 
+.box-sm {
+  padding: 10px 5px;
+  margin-top: 5px;
+  border: 1px solid $corner;
+}
+
 .error {
   margin-top: 10px;
   color: red;

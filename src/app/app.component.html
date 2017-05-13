@@ -1,5 +1,8 @@
-<app-points-table></app-points-table>
+<app-points-table
+        (pointsSelected)="pointsSelectedChanged($event)"
+></app-points-table>
 <app-add-point></app-add-point>
+<app-favorite-points [selected]="pointsSelected"></app-favorite-points>
 <app-import-gatekeeper
         [importResponses]="importResponses$ | async"
         (fileContents)="fileUploaded($event)"
