@@ -1,14 +1,35 @@
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+$corner: #cbcbcb;
 
 .box {
   padding: 25px 5px;
   margin-top: 10px;
-  border: 1px solid #cbcbcb;
+  border: 1px solid $corner;
 }
 
 .error {
   margin-top: 10px;
   color: red;
+}
+
+.ngx-datatable {
+  .datatable-header-cell, .datatable-body-cell {
+    padding: 10px;
+  }
+
+  .datatable-header {
+    border: 1px solid $corner;
+  }
+
+  .datatable-pager {
+    .pages {
+      display: block;
+      border: 1px solid $corner;
+    }
+
+    .pages a {
+      padding: 3px;
+      text-decoration: none;
+    }
+  }
+
 }
