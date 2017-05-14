@@ -23,8 +23,7 @@ export class PointsTableComponent implements OnInit {
     @Output() pointsSelected: EventEmitter<Point[]> = new EventEmitter();
     private selected: Point[] = []
 
-    constructor(private pointsService: PointService,
-                private ref: ChangeDetectorRef) {
+    constructor(private pointsService: PointService) {
         this.points$ = pointsService.getPoints()
     }
 

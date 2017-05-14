@@ -1,1 +1,48 @@
 <h2>Squares table</h2>
+<div class="squares-table">
+    <div class="action-menu">
+        <button (click)="findSquares($event)">Find squares</button>
+    </div>
+    <app-table-pagination-options (paginate)="paginationChanged($event)"></app-table-pagination-options>
+    <ngx-datatable
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="squares"
+            [columnMode]="'force'"
+            [limit]="paginateBy">
+        <ngx-datatable-column>
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Point 1
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.p1?.x}}, {{row?.p1?.y}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column>
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Point 2
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.p2?.x}}, {{row?.p2?.y}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column>
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Point 3
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.p3?.x}}, {{row?.p3?.y}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column>
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Point 4
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row?.p4?.x}}, {{row?.p4?.y}}
+            </ng-template>
+        </ngx-datatable-column>
+        >
+    </ngx-datatable>
+</div>

@@ -13,6 +13,7 @@ import {ImportGatekeeperComponent} from './import-gatekeeper/import-gatekeeper.c
 import { FavoritePointsComponent } from './favorite-points/favorite-points.component';
 import { TablePaginationOptionsComponent } from './table-pagination-options/table-pagination-options.component';
 import { SquaresTableComponent } from './squares-table/squares-table.component';
+import {SquaresService} from './squares.service';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,7 @@ import { SquaresTableComponent } from './squares-table/squares-table.component';
         NgxDatatableModule,
         CustomFormsModule
     ],
-    providers: [PointService],
+    providers: [PointService, SquaresService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
