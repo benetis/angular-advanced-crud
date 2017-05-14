@@ -3,6 +3,7 @@ import {PointService} from './points-service.service';
 import {Observable} from 'rxjs/Observable';
 import {Point} from './points-table/points-table.component';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Subscription} from 'rxjs/Subscription';
 
 export interface Square {
     p1: Point,
@@ -16,6 +17,8 @@ export class SquaresService {
 
     private squares = new BehaviorSubject({})
 
+    private sub = new Subscription()
+
     constructor(private pointsService: PointService) {
     }
 
@@ -24,16 +27,18 @@ export class SquaresService {
     }
 
     public findSquares(): boolean {
-        this.pointsService.getPoints().subscribe(points => {
-            for (let i = 0; i < points.length - 4; i++) {
-                const [p1, p2, p3, p4] = points.slice(i, i + 4)
-                if (this.isSquare( // Not using array destruction for performance
-                        p1, p2, p3, p4
-                    )) {
-                    this.squares.next({p1, p2, p3, p4})
+        this.sub.unsubscribe() // cleaning up previous subscription
+        this.sub.add(
+            this.pointsService.getPoints().subscribe(points => {
+                for (let i = 0; i < points.length - 3; i++) {
+                    const [p1, p2, p3, p4] = points.slice(i, i + 4)
+                    if (this.isSquare( // Not using array destruction for performance
+                            p1, p2, p3, p4
+                        )) {
+                        this.squares.next({p1, p2, p3, p4})
+                    }
                 }
-            }
-        })
+            }))
         return true;
     }
 

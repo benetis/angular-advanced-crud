@@ -2,6 +2,7 @@
 <div class="squares-table">
     <div class="action-menu">
         <button (click)="findSquares($event)">Find squares</button>
+        {{lookingForSquares | json}}
     </div>
     <app-table-pagination-options (paginate)="paginationChanged($event)"></app-table-pagination-options>
     <ngx-datatable
