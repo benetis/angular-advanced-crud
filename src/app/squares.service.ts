@@ -16,7 +16,6 @@ export class SquaresService {
 
     private squares = new BehaviorSubject({})
 
-
     constructor(private pointsService: PointService) {
     }
 
@@ -25,12 +24,16 @@ export class SquaresService {
     }
 
     public findSquares(): boolean {
-
-        const p1 = {x: 0, y: 0}
-        const p2 = {x: 1, y: 0}
-        const p3 = {x: 0, y: 1}
-        const p4 = {x: 1, y: 1}
-        this.squares.next({p1, p2, p3, p4})
+        this.pointsService.getPoints().subscribe(points => {
+            for (let i = 0; i < points.length - 4; i++) {
+                const [p1, p2, p3, p4] = points.slice(i, i + 4)
+                if (this.isSquare( // Not using array destruction for performance
+                        p1, p2, p3, p4
+                    )) {
+                    this.squares.next({p1, p2, p3, p4})
+                }
+            }
+        })
         return true;
     }
 
