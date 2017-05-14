@@ -15,8 +15,6 @@ export class SquaresTableComponent implements OnInit, OnDestroy {
 
     private sub = new Subscription()
 
-    private lookingForSquares = false;
-
     constructor(private squaresService: SquaresService) {
         this.sub.add(
             this.squaresService.getSquares().subscribe(_ => {
@@ -38,7 +36,7 @@ export class SquaresTableComponent implements OnInit, OnDestroy {
     }
 
     public findSquares(e) {
-        this.lookingForSquares = !this.squaresService.findSquares()
+        !this.squaresService.findSquares()
     }
 
 }
